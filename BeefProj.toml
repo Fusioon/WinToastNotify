@@ -2,7 +2,7 @@ FileVersion = 1
 
 [Project]
 Name = "WinToastNotify"
-StartupObject = "WinToastNotify.Program"
+StartupObject = "WinToastNotify.Common"
 
 [Configs.Debug.Win64]
 LibPaths = ["runtimeobject.lib", "Ole32.lib", "User32.lib", "Advapi32.lib", "uuid.lib"]

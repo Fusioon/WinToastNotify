@@ -62,190 +62,7 @@ interface IReference<T> : IInspectable
 	HResult get_Value(T* value);
 }	
 
-[MIDL_INTERFACE("50ac103f-d235-4598-bbef-98fe4d1a3ad4")]
-interface IToastNotificationManagerStatics : IInspectable
-{
-	HResult CreateToastNotifier(ComPtr<IToastNotifier>** result);
-	HResult CreateToastNotifierWithId(HSTRING applicationId, ComPtr<IToastNotifier>** result);
-	HResult GetTemplateContent(ToastTemplateType type, ComPtr<IXmlDocument>** result);
-}
-
-enum ToastTemplateType : c_int
-{
-    ToastImageAndText01 = 0,
-    ToastImageAndText02 = 1,
-    ToastImageAndText03 = 2,
-    ToastImageAndText04 = 3,
-    ToastText01 = 4,
-    ToastText02 = 5,
-    ToastText03 = 6,
-    ToastText04 = 7,
-}
-
-enum NotificationSetting : c_int
-{
-    Enabled = 0,
-    DisabledForApplication = 1,
-    DisabledForUser = 2,
-    DisabledByGroupPolicy = 3,
-    DisabledByManifest = 4,
-}
-
-[MIDL_INTERFACE("75927b93-03f3-41ec-91d3-6e5bac1b38e7")]
-interface IToastNotifier : IInspectable
-{
-	HResult Show(ComPtr<IToastNotification>* notification);
-	HResult Hide(ComPtr<IToastNotification>* notification);
-	HResult get_Setting(NotificationSetting* value);
-	HResult AddToSchedule(ComPtr<IScheduledToastNotification>* scheduledToast);
-	HResult RemoveFromSchedule(ComPtr<IScheduledToastNotification>* scheduledToast);
-	HResult GetScheduledToastNotifications(__FIVectorView_1_Windows__CUI__CNotifications__CScheduledToastNotification** result);
-}
-
-[CRepr]
-struct CDateTime
-{
-	public int64 UniversalTime;
-}
-
-[MIDL_INTERFACE("997e2675-059e-4e60-8b06-1760917c8b80")]
-interface IToastNotification : IInspectable
-{
-	HResult get_Content(IXmlDocument** value);
-	HResult put_ExpirationTime(ComPtr<IReference<CDateTime>>* value);
-	HResult get_ExpirationTime(ComPtr<IReference<CDateTime>>** value);
-
-	/*HResult add_Dismissed(__FITypedEventHandler_2_Windows__CUI__CNotifications__CToastNotification_Windows__CUI__CNotifications__CToastDismissedEventArgs* handler,    EventRegistrationToken* token);
-	HResult remove_Dismissed(EventRegistrationToken token);
-	HResult add_Activated(__FITypedEventHandler_2_Windows__CUI__CNotifications__CToastNotification_IInspectable* handler,    EventRegistrationToken* token);
-	HResult remove_Activated(EventRegistrationToken token);
-	HResult add_Failed(__FITypedEventHandler_2_Windows__CUI__CNotifications__CToastNotification_Windows__CUI__CNotifications__CToastFailedEventArgs* handler,    EventRegistrationToken* token);
-	HResult remove_Failed(EventRegistrationToken token);*/
-
-}
-
-[MIDL_INTERFACE("f7f3a506-1e87-42d6-bcfb-b8c809fa5494")]
-interface IXmlDocument : IInspectable
-{
-	HResult get_Doctype(ComPtr<IXmlDocumentType>** value);
-	HResult get_Implementation(ComPtr<IXmlDomImplementation>** value);
-	HResult get_DocumentElement(ComPtr<IXmlElement>** value);
-	HResult CreateElement(HSTRING tagName, ComPtr<IXmlElement>** newElement);
-	HResult CreateDocumentFragment(ComPtr<IXmlDocumentFragment>** newDocumentFragment);
-	HResult CreateTextNode(HSTRING data, ComPtr<IXmlText>** newTextNode);
-	HResult CreateComment(HSTRING data, ComPtr<IXmlComment>** newComment);
-	HResult CreateProcessingInstruction(HSTRING target, HSTRING data, ComPtr<IXmlProcessingInstruction>** newProcessingInstruction);
-	HResult CreateAttribute(HSTRING name, ComPtr<IXmlAttribute>** newAttribute);
-	HResult CreateEntityReference(HSTRING name, ComPtr<IXmlEntityReference>** newEntityReference);
-	HResult GetElementsByTagName(HSTRING tagName, ComPtr<IXmlNodeList>** elements);
-	HResult CreateCDataSection(HSTRING data, ComPtr<IXmlCDataSection>** newCDataSection);
-	HResult get_DocumentUri(HSTRING* value);
-	HResult CreateAttributeNS(IInspectable* namespaceUri, HSTRING qualifiedName, ComPtr<IXmlAttribute>** newAttribute);
-	HResult CreateElementNS(IInspectable* namespaceUri, HSTRING qualifiedName, ComPtr<IXmlElement>** newElement);
-	HResult GetElementById(HSTRING elementId, ComPtr<IXmlElement>** element);
-	HResult ImportNode(ComPtr<IXmlNode>* node, bool deep, ComPtr<IXmlNode>** newNode);
-
-}
-
-interface IXmlDocumentType : IInspectable
-{
-
-}
-
-interface IXmlDomImplementation : IInspectable
-{
-
-}
-
-interface IXmlElement : IInspectable
-{
-
-}
-
-interface IXmlDocumentFragment : IInspectable
-{
-
-}
-
-
-interface IXmlText : IInspectable
-{
-
-}
-
-interface IXmlComment : IInspectable
-{
-
-}
-
-interface IXmlProcessingInstruction : IInspectable
-{
-
-}
-
-interface IXmlAttribute : IInspectable
-{
-
-}
-
-interface IXmlEntityReference : IInspectable
-{
-
-}
-
-interface IXmlNodeList : IInspectable
-{
-
-}
-
-interface IXmlCDataSection : IInspectable
-{
-
-}
-
-interface IXmlNode : IInspectable
-{
-
-}
-
-[MIDL_INTERFACE("6cd0e74e-ee65-4489-9ebf-ca43e87ba637")]
-interface IXmlDocumentIO : IInspectable
-{
-	HResult LoadXml(HSTRING xml);
-	HResult LoadXmlWithSettings(HSTRING xml, ComPtr<IXmlLoadSettings>* loadSettings);
-	HResult SaveToFileAsync(ComPtr<IStorageFile>* file, ComPtr<IAsyncAction>** asyncInfo);
-}
-
-
-interface IXmlLoadSettings : IInspectable
-{
-
-}
-
-interface IStorageFile : IInspectable
-{
-
-}
-
-interface IAsyncAction : IInspectable
-{
-
-}
-
-[MIDL_INTERFACE("79f577f8-0de7-48cd-9740-9b370490c838")]
-interface IScheduledToastNotification : IInspectable
-{
-
-}
-
-[MIDL_INTERFACE("04124b20-82c6-4229-b109-fd9ed4662b53")]
-interface IToastNotificationFactory : IInspectable
-{
-	HResult CreateToastNotification(ComPtr<IXmlDocument>* content, ComPtr<IToastNotification>** value);
-}
-
-
-struct ComVtbl<T>
+public struct ComVtbl<T>
 	where T : interface, IUnknown
 {
 	typealias ThisT = void;//ComPtr<T>;
@@ -353,4 +170,123 @@ struct ComPtr<T>
 	}
 
 	public static GUID IID = GetUUID();
+}
+
+[AttributeUsage(.Struct)]
+struct GenerateVTableAttribute : Attribute, IOnTypeInit
+{
+	public bool GenerateConstructor = true;
+	public bool AllowInheritance = true;
+
+	[Comptime]
+	public void OnTypeInit(Type type, Self* prev)
+	{
+		if (GenerateConstructor)
+			Compiler.EmitTypeBody(type, "public this() : base(VTable<Self>.Instance) {}");
+		if (AllowInheritance)
+			Compiler.EmitTypeBody(type, "public this(void* vTable) : base(vTable) {}");
+	}
+}
+
+[CRepr]
+struct ComPtr
+{
+	[CRepr]
+	public struct VTable<T>
+	{
+		static Self s_Instance = .();
+		#unwarn
+		public static Self* Instance => &s_Instance;
+
+		[Comptime, OnCompile(.TypeInit)]
+		static void Generate()
+		{
+			if (typeof(Self) == typeof(VTable<>))
+				return;
+
+			#unwarn
+			String code = scope .();
+			String initCode = scope .();
+			String typeName = typeof(T).GetFullName(.. scope .());
+			int count = 0;
+
+			bool mayOverride = typeof(T).BaseType != typeof(ComPtr);
+			HashSet<String> generatedMethods = scope .();
+
+			if (mayOverride)
+			{
+				code.AppendF($"public using VTable<{typeof(T).BaseType}> __base__;\n");
+				initCode.Append("\t__base__ = .();\n");
+				count++;
+
+				for (let method in typeof(T).BaseType.GetMethods(.Instance | .Public | .DeclaredOnly))
+				{
+					if (method.IsConstructor || method.IsDestructor)
+						continue;
+
+					if (method.IsStatic)
+						continue;
+
+					String methodName = new .();
+					methodName.Append(method.Name);
+					method.GetMethodSig(methodName);
+
+					if (!generatedMethods.Add(methodName))
+						continue;
+				}
+			}
+
+			for (let method in typeof(T).GetMethods(.Instance | .Public | .DeclaredOnly))
+			{
+				if (method.IsConstructor || method.IsDestructor)
+					continue;
+
+				if (method.IsStatic)
+					continue;
+
+				String methodName = new .();
+				methodName.Append(method.Name);
+				method.GetMethodSig(methodName);
+
+				if (!generatedMethods.Add(methodName))
+				{
+					if (mayOverride)
+					{
+						initCode.AppendF($"\t{method.Name} = => {typeName}.{method.Name};\n");
+					}
+					continue;
+				}
+
+				Runtime.Assert(method.IsMutating, "Struct methods called through VTable need to be marked with `mut`");
+
+				let @mut = method.IsMutating ? "mut " : "";
+				let ptr = method.IsMutating ? "" : "*";
+
+				let paramsDecl = scope String();
+				paramsDecl.Append(", ");
+				method.GetParamsDecl(paramsDecl);
+				if (paramsDecl.Length == 2)
+					paramsDecl.Clear();
+
+				code.AppendF($"public function {method.ReturnType} ({@mut}{typeName}{ptr} this{paramsDecl}) {method.Name};\n");
+
+				initCode.AppendF($"\t{method.Name} = => {typeName}.{method.Name};\n");
+
+				count++;
+			}
+
+			Compiler.EmitTypeBody(typeof(Self), code);
+
+			if (count > 0)
+				Compiler.EmitTypeBody(typeof(Self), scope $"public this()\n{{\n{initCode}}}");
+		}	
+	}
+
+
+	void* _vTable;
+
+	protected this(void* vtable)
+	{
+		_vTable = vtable;
+	}
 }
